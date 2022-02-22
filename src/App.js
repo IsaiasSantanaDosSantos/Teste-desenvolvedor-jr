@@ -1,10 +1,28 @@
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 
+import Inicio from './components/pages/Inicio'
+import Cadastro from './components/pages/Cadastro'
+import Contato from './components/pages/Contato'
+
+import Container from './components/layout/Container';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Acmi Saúde</h1>
-    </div>
+    <Router>
+      <div>
+        <Link to="/" >Inicio</Link>
+        <Link to="/cadastro" >Cadastro</Link>
+        <Link to="/contato" >Contato</Link>
+      </div>
+      <Routes>
+        <Container>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/contato" element={<Contato />} />
+        </Container>
+      </Routes>
+      <p>Footer</p>
+    </Router>
   );
 }
 
