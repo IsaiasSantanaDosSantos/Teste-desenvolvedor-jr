@@ -1,0 +1,54 @@
+.home_container {
+    border: 1px solid #222;
+    padding: 0 10px;
+    margin-top: 1em;
+}
+
+.home_container h1 {
+    font-size: 2.5em;
+    margin-bottom: .5em;
+    color: #C9301D;
+    margin-top: 1em;
+    padding: 0 0.2em;
+    background-color: #222;
+    text-align: center;
+}
+
+.home_container p {
+    margin-bottom: 1.5em;
+    color: #7b7b7b;
+}
+
+.social_list {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin-top: 5em;
+   
+}
+
+.social_list li {
+    margin: 0 1em;
+    transition: .3s;
+}
+
+.social_list li:hover {
+    color: #C9301D;
+}
+
+.social_list svg {
+    font-size: 4em;
+    cursor: pointer;
+}
+
+.social_list svg:active {
+    color: #C9301D;
+}
+.copy_right {
+    margin-top: 2em;
+}
+
+.copy_right span {
+    font-weight: bold;
+    color: #C9301D;
+}

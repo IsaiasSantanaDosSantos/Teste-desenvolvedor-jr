@@ -9,7 +9,7 @@ function Footer(){
            <ul className={styles.social_list}>
                <li>
                    <FaLinkedin/>
-               </li>
+               </li >
                <li>
                    <FaGithub/>
                </li>
