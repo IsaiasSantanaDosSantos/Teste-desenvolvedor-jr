@@ -9,7 +9,7 @@ function Cadastro() {
     <div className={styles.init}>
       <h1 id="titlleCadastro">Cadastro</h1>
       <p>
-        A clínica ACME deseja ter uma solução web para consultar, cadastre-se e
+        A clínica Acmi deseja ter uma solução web para consulta, cadastre-se e
         conheça todas as facilidades.
       </p>
       <Form />
