@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Listar from "../pages/Listar";
+//import PesquisarPaciente from "../pages/PesquisarPaciente";
 
 import styles from "./Form.module.css";
 
@@ -11,12 +12,29 @@ function Form() {
   const [address, setAddress] = useState('');
   const [gender, setGender] = useState('');
   const [status, setStatus] = useState('');
+  const [nameSeach, setNameSeach] = useState('')
+  const [div, setDiv] = useState('')
   const navigate = useNavigate()
+
+
+  
+  
+
+/*
+  const seach = (event) => {
+  event.preventDefault()
+
+  let consult =localStorage.getItem('name', 'nameSeach' )
+
+  console.log(consult)
+*/
 
   const armazenar = (event) => {
     event.preventDefault()
 
     let dados = JSON.parse(localStorage.getItem("dadosPac")) || [];
+
+    
 
     let todosDados = {
       name,
@@ -26,32 +44,30 @@ function Form() {
       gender,
       status
     };
+    if (todosDados.cpf === dados.cpf) {
+      alert(`CPF: ${cpf.value} já existente!`)
+    }
 
     dados.push(todosDados);
 
     localStorage.setItem("dadosPac", JSON.stringify(dados));
     navigate('/listar')
+     //todosDados = dados preenchido no formulario recenetimente
+     //dados é tudo que está armazenado
+    //console.log(todosDados.cpf)
+    
+    
+    
+    
   };
 
-  function consultar() {
-    let dados = JSON.parse(localStorage.getItem("dadosPac"));
+  function seach(){
+    let dados = JSON.parse(localStorage.getItem("dadosPac")) || [];
 
-    localStorage.setItem("dadosPac", JSON.stringify(dados));
-
-    document.getElementById("titlleCadastro").innerHTML = "Lista paciente";
-
-    document.getElementById("registerForm").style.display = "none";
-
-    document.getElementById("patientList").style.display = "block";
-
-    document.getElementById("patientList").innerHTML = JSON.stringify(dados);
-
-    //alert(JSON.stringify(todosDados))
+        
   }
 
-  const apagar = (chave) => {
-    localStorage.removeItem(chave);
-  };
+  
 
   return (
     <div className={styles.init}>
@@ -120,17 +136,27 @@ function Form() {
           </label>
         </div>
         <div>
-          <button onClick={() => { }}>Cadastrar</button>
+          <button>Cadastrar</button>
         </div>
       </form>
 
-      <div id="patientList">
+      <div >
         <Listar />
       </div>
-      <div id="removePatient"></div>
-      <div className={styles.register}>
-        <button id="btnConsult" onClick={() => consultar()}>Lista Paciente</button>
-        <button onClick={() => apagar("ls_nome")}>Renover Paciente</button>
+      <div>
+        <div className={styles.init}>
+          <label htmlFor="myForm">
+            Pesquisar paciente: 
+            <input 
+            type="search" 
+            placeholder="Digite o nome..."
+            value={nameSeach}
+            onChange={(e) => setNameSeach(e.target.value)} /></label>
+
+          <button onClick={seach}>Pequisar</button>
+          <button >Renover</button>
+          <div value={div} onChange={(e) => setDiv(e.target.value)}></div>
+        </div>
       </div>
     </div>
   );
