@@ -46,6 +46,8 @@ function Form() {
             status: valorSelect
         }
 
+        //alert(JSON.stringify(todosDados))
+
         dados.push(todosDados)
 
         localStorage.setItem('dadosPac', JSON.stringify(dados))
@@ -54,8 +56,23 @@ function Form() {
 
     }
 
-    const consultar=(chave)=> {
-        alert(localStorage.getItem('valor'))
+    function consultar() {
+
+        var dados = JSON.parse(localStorage.getItem('dadosPac'))
+
+        localStorage.setItem('dadosPac', JSON.stringify(dados))
+
+        document.getElementById('titlleCadastro').innerHTML="Lista paciente";
+
+        document.getElementById("registerForm").style.display = "none";
+
+        document.getElementById('patientList').style.display ="block"
+
+        document.getElementById('patientList').innerHTML = JSON.stringify(dados)
+
+       //alert(JSON.stringify(todosDados))
+       
+
     }
 
     const apagar=(chave)=> {
@@ -64,7 +81,7 @@ function Form() {
 
     return (
         <div className={styles.init}>
-            <form name='myForm'>
+            <form name='myForm' id='registerForm'>
                 <div>
                     <label>Nome:</label>
                     <input  type="text" id='name' placeholder="Digite o seu nome..." required onClick={(e)=>setNome(e.target.value)}/>
@@ -104,11 +121,14 @@ function Form() {
                 <div>
                     <button onClick={()=>armazenar('ls_nome', nome)}>Cadastrar</button>
                 </div>
-                <div className={styles.register}>
-                    <button onClick={()=>consultar('ls_nome',nome)} >Lista Paciente</button>
-                    <button onClick={()=>apagar('ls_nome')} >Renover Paciente</button>
-                </div>
             </form>
+           
+            <div id='patientList'></div>
+            <div id='removePatient'></div>
+            <div className={styles.register}>
+                    <button id='btnConsult' onClick={()=>consultar()} >Lista Paciente</button>
+                    <button onClick={()=>apagar('ls_nome')} >Renover Paciente</button>
+            </div>
         </div>
     )
 };
