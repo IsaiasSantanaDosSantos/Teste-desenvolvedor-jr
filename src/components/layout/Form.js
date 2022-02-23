@@ -21,6 +21,11 @@ function Form() {
         if(sexoPes) {
             alert('Por favor, escolha um sexo.')
         }
+
+
+        const select = document.querySelector('#status')
+
+        const valorSelect = select.value
        
 
 
@@ -37,7 +42,8 @@ function Form() {
             Nasc: dataNasc.value,
             cpf: doc.value,
             end: endereco.value,
-            sexo: sexoPessoa
+            sexo: sexoPessoa,
+            status: valorSelect
         }
 
         dados.push(todosDados)
@@ -61,15 +67,15 @@ function Form() {
             <form name='myForm'>
                 <div>
                     <label>Nome:</label>
-                    <input  type="text" id='name' placeholder="Digite o seu nome..." onClick={(e)=>setNome(e.target.value)}/>
+                    <input  type="text" id='name' placeholder="Digite o seu nome..." required onClick={(e)=>setNome(e.target.value)}/>
                 </div>
                 <div>
                     <label>Data nascimento:</label>
-                    <input id='nasc' name="data" type="date" />
+                    <input id='nasc' name="data" type="date" required/>
                 </div>
                 <div>
                     <label>CPF:</label>
-                    <input id='cpf' name="cpf" type="text" placeholder="Digite sem pontos..." />
+                    <input id='cpf' name="cpf" type="text" placeholder="Digite sem pontos..." required/>
                 </div>
                 <div>
                     <label>Sexo:</label>
@@ -89,7 +95,7 @@ function Form() {
                 <div>
                     <label htmlFor="status">Status:</label>
 
-                    <select name="status" id="status" >
+                    <select name="status" id="status" required>
                         <option value="">Escolha uma opsão</option>
                         <option value="ativo">Ativo</option>
                         <option value="inativo">Inativo</option>
