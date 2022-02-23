@@ -16,7 +16,11 @@ function Form() {
 
         var dados = JSON.parse(localStorage.getItem('dadosPac'))
 
-        
+        var sexo = document.forms["myForm"] ["sexo"];
+        var sexoPes = (sexo[0].checked === false && sexo[1].checked === false && sexo[2].checked === false)
+        if(sexoPes) {
+            alert('Por favor, escolha um sexo.')
+        }
        
 
 
@@ -27,8 +31,6 @@ function Form() {
         }
         
         var sexoPessoa = document.querySelector('input[name="sexo"]:checked').value;
-
-        alert(sexoPessoa)
 
         var todosDados = {
             nome: name.value,
