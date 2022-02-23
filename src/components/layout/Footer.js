@@ -1,30 +1,30 @@
-import {FaLinkedin, FaGithub, FaWhatsapp, FaFacebook} from 'react-icons/fa'
+import { FaLinkedin, FaGithub, FaWhatsapp, FaFacebook } from "react-icons/fa";
 
-import styles from './Footer.module.css'
+import styles from "./Footer.module.css";
 
-function Footer(){
+function Footer() {
+  return (
+    <footer className={styles.footer}>
+      <ul className={styles.social_list}>
+        <li>
+          <FaLinkedin />
+        </li>
+        <li>
+          <FaGithub />
+        </li>
+        <li>
+          <FaFacebook />
+        </li>
+        <li>
+          <FaWhatsapp />
+        </li>
+      </ul>
+      <p className={styles.copy_right}>
+        <span>Acme Saúde</span> &copy; 2022 - Desenvolvido por Isaias Santana
+        dos Santos
+      </p>
+    </footer>
+  );
+}
 
-    return (
-        <footer className={styles.footer}>
-           <ul className={styles.social_list}>
-               <li>
-                   <FaLinkedin/>
-               </li >
-               <li>
-                   <FaGithub/>
-               </li>
-               <li>
-                   <FaFacebook/>
-               </li>
-               <li>
-                   <FaWhatsapp/>
-               </li>
-            </ul> 
-            <p className={styles.copy_right}>
-                <span>Acme Saúde</span> &copy; 2022 - Desenvolvido por Isaias Santana dos Santos
-            </p>
-        </footer>
-    )
-};
-
-export default Footer
+export default Footer;
