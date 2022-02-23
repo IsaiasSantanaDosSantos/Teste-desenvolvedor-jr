@@ -1,0 +1,73 @@
+.init {
+    margin: 10px auto;
+    border: 1px solid #222;
+    padding: 10px;
+}
+
+.init h1 {
+    font-size: 2.5em;
+    margin-bottom: .5em;
+    color: #C9301D;
+    margin-top: 20px;
+    padding: 0 0.2em;
+    background-color: #222;
+    text-align: center;
+}
+
+.init p {
+    margin-bottom: 1.5em;
+    color: #7b7b7b;
+}
+
+.init form {
+    text-align: center;
+}
+
+.init label {
+    padding-right: 1em;
+    
+}
+.init input {
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid #222;
+    background-color: #efefef;
+}
+
+
+
+.init button, .register button {
+    margin-top: 1.5em ;
+    border: 2px solid #222;
+    padding: 6px 20px;
+    text-decoration: none;
+    color: #222;
+    font-weight: bold;
+}
+.init button:hover, .register button:hover {
+    color: #C9301D;
+    background-color: #222;
+    border: 2px solid #C9301D;
+    box-shadow: 3px 4px 8px #222;
+}
+
+.init button:active, .register button:active {
+    box-shadow: 3px 4px 8px #C9301D;
+}
+
+.init div {
+    margin-bottom: .8em;
+}
+
+.register button {
+   margin: 20px;
+}
+
+.list {
+    display: none;
+}
+
+.consult {
+    display: none;
+}
+
