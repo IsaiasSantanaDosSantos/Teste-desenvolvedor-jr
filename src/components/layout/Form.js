@@ -11,16 +11,13 @@ function Form() {
         var dataNasc = document.getElementById('nasc')
         var doc = document.getElementById('cpf')
         var endereco = document.getElementById('endereco')
+        
 
 
         var dados = JSON.parse(localStorage.getItem('dadosPac'))
 
-
         
-        var orientSexoal = document.forms['myForm'] ['sexo'];
-        if(orientSexoal[0].checked === true ) {
-            alert(orientSexoal[0].value)
-        }
+       
 
 
 
@@ -28,17 +25,24 @@ function Form() {
             localStorage.setItem('dadosPac', '[]')
             dados= []
         }
+        
+        var sexoPessoa = document.querySelector('input[name="sexo"]:checked').value;
+
+        alert(sexoPessoa)
 
         var todosDados = {
             nome: name.value,
             Nasc: dataNasc.value,
             cpf: doc.value,
-            end: endereco.value
+            end: endereco.value,
+            sexo: sexoPessoa
         }
 
         dados.push(todosDados)
 
         localStorage.setItem('dadosPac', JSON.stringify(dados))
+
+        
 
     }
 
