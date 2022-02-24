@@ -63,6 +63,18 @@ function Form() {
 
   function seach(){
     let dados = JSON.parse(localStorage.getItem("dadosPac")) || [];
+    //alert(JSON.stringify(dados)); //Mostra tudo que há no localstorage
+    //alert(nameSeach) //Nome digitado no campo pesquisa
+        const newList = JSON.stringify(dados);
+        //alert(JSON.stringify(newList))
+        if(newList.match(nameSeach)){
+          alert("Nome encontrado!")
+        } else {
+          alert(`Não há paciente com o nome ${nameSeach}`)
+        }
+        
+        
+       
 
         
   }
