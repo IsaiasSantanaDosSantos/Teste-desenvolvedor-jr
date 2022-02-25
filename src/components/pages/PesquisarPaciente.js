@@ -1,39 +1,34 @@
 import React, { useState } from "react";
 
-import styles from './PesquisarPaciente.module.css'
+import styles from "./PesquisarPaciente.module.css";
 
 function PesquisarPaciente() {
+  const [name, setName] = useState("");
 
-  const [name, setName] = useState('');
+  // const nome = dados(localStorage.name).filter (paciente.name === "Rafael")
 
-  const nome = dados(localStorage.name).filter (paciente.name === "Rafael")
+  //localStorage.setItem("dadosPac", JSON.stringify(dados));
 
-  localStorage.setItem("dadosPac", JSON.stringify(dados));
-
-  
-
-
- 
-
-  return(
+  return (
     <div>
       <div className={styles.init}>
         <label htmlFor="myForm">
-          Pesquisar paciente: 
-          <input 
-          type="search" 
-          placeholder="Digite o nome..."
-          value={name}
-          onChange={(e) => setName(e.target.value)} /></label>
+          Pesquisar paciente:
+          <input
+            type="search"
+            placeholder="Digite o nome..."
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </label>
 
-        <button >Pequisar Paciente</button>
+        <button>Pequisar Paciente</button>
       </div>
       <div>
         <button>Renover Paciente</button>
       </div>
-  </div>
-  )
-};
+    </div>
+  );
+}
 
-
-export default PesquisarPaciente
+export default PesquisarPaciente;

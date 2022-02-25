@@ -1,46 +1,43 @@
 .init form {
-    text-align: center;
+  text-align: center;
 }
 
 .init label {
-    padding-right: 1em;
-    
+  padding-right: 1em;
 }
 .init input {
-    padding: 5px;
-    border: none;
-    border-bottom: 1px solid #222;
-    background-color: #efefef;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid #222;
+  background-color: #efefef;
 }
 
-
-
-.init button, .register button {
-    margin-top: 1.5em ;
-    border: 2px solid #222;
-    padding: 6px 20px;
-    text-decoration: none;
-    color: #222;
-    font-weight: bold;
+.init button,
+.register button {
+  margin-top: 1.5em;
+  border: 2px solid #222;
+  padding: 6px 20px;
+  text-decoration: none;
+  color: #222;
+  font-weight: bold;
 }
-.init button:hover, .register button:hover {
-    color: #C9301D;
-    background-color: #222;
-    border: 2px solid #C9301D;
-    box-shadow: 3px 4px 8px #222;
+.init button:hover,
+.register button:hover {
+  color: #c9301d;
+  background-color: #222;
+  border: 2px solid #c9301d;
+  box-shadow: 3px 4px 8px #222;
 }
 
-.init button:active, .register button:active {
-    box-shadow: 3px 4px 8px #C9301D;
+.init button:active,
+.register button:active {
+  box-shadow: 3px 4px 8px #c9301d;
 }
 
 .init div {
-    margin-bottom: .8em;
+  margin-bottom: 0.8em;
 }
 
 .register button {
-   margin: 20px;
+  margin: 20px;
 }
-
-
-
