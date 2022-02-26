@@ -50,7 +50,7 @@ function Form() {
 
   function seach() {
     let dados = JSON.parse(localStorage.getItem("dadosPac")) || [];
-    
+
     const newList = JSON.stringify(dados);
     if (newList.match(nameSeach)) {
       alert("Nome encontrado");
@@ -64,7 +64,6 @@ function Form() {
 
     //resgata dados do localstorage e armazena com nome "dadosPax"
     let dados = JSON.parse(localStorage.getItem("dadosPac")) || [];
-
 
     //lista com as chaves
     let todosDados = {
@@ -81,7 +80,6 @@ function Form() {
     //criar lista no localstorage com nome "dadosPac" com os valores da variável "dados"
     localStorage.setItem("dadosPac", JSON.stringify(dados));
     //navigate("/listar"); //ir para a page lista pacientes
-
 
     //tranformar a lista de string para array
     let novaLista = JSON.parse(localStorage.getItem("dadosPac"));
