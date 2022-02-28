@@ -48,14 +48,53 @@ function Form() {
     //console.log(todosDados.cpf)
   };
 
-  function seach() {
+  function seach(event) {
+    event.preventDefault();
+
+    //resgata dados do localstorage e armazena com nome "dadosPax"
     let dados = JSON.parse(localStorage.getItem("dadosPac")) || [];
 
-    const newList = JSON.stringify(dados);
-    if (newList.match(nameSeach)) {
-      alert("Nome encontrado");
-    }
-  }
+    //lista com as chaves
+    /*
+    let todosDados = {
+      name,
+      birthdate,
+      cpf,
+      address,
+      gender,
+      status,
+    };
+    */
+    //dados.push(todosDados); //Comentei para não ficar salvando todas as vezes
+
+    //criar lista no localstorage com nome "dadosPac" com os valores da variável "dados"
+    localStorage.setItem("dadosPac", JSON.stringify(dados));
+    //navigate("/listar"); //ir para a page lista pacientes
+
+    //tranformar a lista de string para array
+    let novaLista = JSON.parse(localStorage.getItem("dadosPac"));
+    //console.log('novaLista', novaLista)
+    
+    
+  
+        let valid = false
+        while (nameSeach.length === 0) 
+          nameSeach = alert('Precisa digitar um nome!');
+        while (valid !== true){
+          let confirm = `O nome ${nameSeach} não está cadastrado!`
+          for (let i of novaLista) {
+            if (i.name === nameSeach) {
+              confirm = `${i.name} esta cadastrado`;
+              let cadastroPaciente = JSON.stringify(i)
+              document.getElementById('listar').style.display="none"
+              document.getElementById("seach").innerHTML = JSON.stringify(i)
+              console.log(cadastroPaciente)
+            }
+          }
+         alert(confirm)
+          break
+        }
+  };
 
   // Função de teste!
 
@@ -66,15 +105,13 @@ function Form() {
     let dados = JSON.parse(localStorage.getItem("dadosPac")) || [];
 
     //lista com as chaves
+    /*
     let todosDados = {
       name,
-      birthdate,
-      cpf,
-      address,
       gender,
       status,
     };
-
+    */
     //dados.push(todosDados); //Comentei para não ficar salvando todas as vezes
 
     //criar lista no localstorage com nome "dadosPac" com os valores da variável "dados"
@@ -84,17 +121,25 @@ function Form() {
     //tranformar a lista de string para array
     let novaLista = JSON.parse(localStorage.getItem("dadosPac"));
     //console.log('novaLista', novaLista)
+    
+    
+  
+        let valid = false
+        while (nameSeach.length === 0) 
+          nameSeach = alert('Precisa digitar um nome: ');
+        while (valid !== true){
+          let confirm = `O nome ${nameSeach} não está cadastrado!`
+          for (let i of novaLista) {
+            if (i.name === nameSeach) {
+              confirm = `${i.name} esta cadastrado`;
+              let cadastroPaciente = JSON.stringify(i)
+              console.log(cadastroPaciente)
+            }
+          }
+         alert(confirm)
+          break
+        }
 
-    //variável percorrer o array novaLista
-    for (let i of novaLista) {
-      //se "i" cpf igual ao cpf digitado...
-      if (i.cpf === "330.313.328-06") {
-        console.log(i);
-        //se não...
-      } else {
-        console.log("Não há!");
-      }
-    }
   };
 
   // Fim função teste
@@ -212,9 +257,10 @@ function Form() {
         </div>
       </form>
 
-      <div>
+      <div id="listar" >
         <Listar />
       </div>
+      <div id="seach"></div>
       <div>
         <div className={styles.init}>
           <label htmlFor="myForm">
