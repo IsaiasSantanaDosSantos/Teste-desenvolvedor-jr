@@ -16,6 +16,7 @@ function Form() {
   const [div, setDiv] = useState("");
   const navigate = useNavigate();
 
+  //Botão cadastrar
   const armazenar = (event) => {
     event.preventDefault();
 
@@ -29,13 +30,61 @@ function Form() {
       gender,
       status,
     };
+ 
+
+
+
+
+
+
+
+
+
+
+
+    let novaLista = JSON.parse(localStorage.getItem("dadosPac"));
+
+
+    
+    if (cpf.length < 11 || cpf.length > 11){
+      cpf = alert("CPF inválido! CPF precisa de 11 digitos");
+    } else {
+      for (let i of novaLista) {
+        if (i.cpf === cpf) {
+          alert(`Já existe um cadastro com este CPF "${cpf}". Não é permitido números duplicados !`)
+          cpf.focus()
+        }
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     dados.push(todosDados);
 
     localStorage.setItem("dadosPac", JSON.stringify(dados));
     navigate("/listar");
   };
-
+//Botão pesquisar
   function seach(event) {
     event.preventDefault();
 
@@ -69,6 +118,7 @@ function Form() {
     }
   }
 
+  //Botão remover
   const remove = (event) => {
     event.preventDefault();
 
@@ -98,7 +148,7 @@ function Form() {
 
             var myArray = item;
             var newArray = myArray.filter((item) => item.name !== nameSeach);
-            alert(JSON.stringify(newArray)); //lista atualizada sem o nome desejada
+            //alert(JSON.stringify(newArray)); //lista atualizada sem o nome desejada
 
             //criar lista no localstorage com nome "dadosPac" com os valores da variável "newArray"
             localStorage.setItem("dadosPac", JSON.stringify(newArray));
@@ -148,7 +198,7 @@ function Form() {
               id="cpf"
               name="cpf"
               type="text"
-              placeholder="Digite sem pontos..."
+              placeholder="Apenas números..."
               value={cpf}
               onChange={(e) => setCpf(e.target.value)}
               required
