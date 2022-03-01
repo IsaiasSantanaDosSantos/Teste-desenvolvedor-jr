@@ -16,15 +16,6 @@ function Form() {
   const [div, setDiv] = useState("");
   const navigate = useNavigate();
 
-  /*
-  const seach = (event) => {
-  event.preventDefault()
-
-  let consult =localStorage.getItem('name', 'nameSeach' )
-
-  console.log(consult)
-*/
-
   const armazenar = (event) => {
     event.preventDefault();
 
@@ -43,9 +34,6 @@ function Form() {
 
     localStorage.setItem("dadosPac", JSON.stringify(dados));
     navigate("/listar");
-    //todosDados = dados preenchido no formulario recenetimente
-    //dados é tudo que está armazenado
-    //console.log(todosDados.cpf)
   };
 
   function seach(event) {
@@ -54,19 +42,6 @@ function Form() {
     //resgata dados do localstorage e armazena com nome "dadosPax"
     let dados = JSON.parse(localStorage.getItem("dadosPac")) || [];
 
-    //lista com as chaves
-    /*
-    let todosDados = {
-      name,
-      birthdate,
-      cpf,
-      address,
-      gender,
-      status,
-    };
-    */
-    //dados.push(todosDados); //Comentei para não ficar salvando todas as vezes
-
     //criar lista no localstorage com nome "dadosPac" com os valores da variável "dados"
     localStorage.setItem("dadosPac", JSON.stringify(dados));
     //navigate("/listar"); //ir para a page lista pacientes
@@ -74,46 +49,32 @@ function Form() {
     //tranformar a lista de string para array
     let novaLista = JSON.parse(localStorage.getItem("dadosPac"));
     //console.log('novaLista', novaLista)
-    
-    
-  
-        let valid = false
-        while (nameSeach.length === 0) 
-          nameSeach = alert('Precisa digitar um nome!');
-        while (valid !== true){
-          let confirm = `O nome ${nameSeach} não está cadastrado!`
-          for (let i of novaLista) {
-            if (i.name === nameSeach) {
-              confirm = `${i.name} esta cadastrado`;
-              let cadastroPaciente = JSON.stringify(i)
-              document.getElementById('listar').style.display="none"
-              document.getElementById("seach").innerHTML = JSON.stringify(i)
-              console.log(cadastroPaciente)
-            }
-          }
-         alert(confirm)
-          break
+
+    let valid = false;
+    while (nameSeach.length === 0)
+      nameSeach = alert("Precisa digitar um nome!");
+    while (valid !== true) {
+      let confirm = `O nome ${nameSeach} não está cadastrado!`;
+      for (let i of novaLista) {
+        if (i.name === nameSeach) {
+          confirm = `${i.name} esta cadastrado`;
+          let cadastroPaciente = JSON.stringify(i);
+          document.getElementById("listar").style.display = "none";
+          document.getElementById("seach").innerHTML = cadastroPaciente;
+          //console.log(cadastroPaciente)
         }
-  };
+      }
+      alert(confirm);
+      break;
+    }
+  }
 
-  // Função de teste!
-
-  const add = (event) => {
+  const remove = (event) => {
     event.preventDefault();
 
     //resgata dados do localstorage e armazena com nome "dadosPax"
     let dados = JSON.parse(localStorage.getItem("dadosPac")) || [];
 
-    //lista com as chaves
-    /*
-    let todosDados = {
-      name,
-      gender,
-      status,
-    };
-    */
-    //dados.push(todosDados); //Comentei para não ficar salvando todas as vezes
-
     //criar lista no localstorage com nome "dadosPac" com os valores da variável "dados"
     localStorage.setItem("dadosPac", JSON.stringify(dados));
     //navigate("/listar"); //ir para a page lista pacientes
@@ -121,28 +82,35 @@ function Form() {
     //tranformar a lista de string para array
     let novaLista = JSON.parse(localStorage.getItem("dadosPac"));
     //console.log('novaLista', novaLista)
-    
-    
-  
-        let valid = false
-        while (nameSeach.length === 0) 
-          nameSeach = alert('Precisa digitar um nome: ');
-        while (valid !== true){
-          let confirm = `O nome ${nameSeach} não está cadastrado!`
-          for (let i of novaLista) {
-            if (i.name === nameSeach) {
-              confirm = `${i.name} esta cadastrado`;
-              let cadastroPaciente = JSON.stringify(i)
-              console.log(cadastroPaciente)
-            }
+
+    let valid = false;
+    while (nameSeach.length === 0)
+      nameSeach = alert("Precisa digitar um nome!");
+    while (valid !== true) {
+      let returno = `O nome "${nameSeach}" não está cadastrado!`;
+      for (let i of novaLista) {
+        if (i.name === nameSeach) {
+          let confirm = window.confirm(
+            `Confirma a remoção de "${i.name}" da lista de cadastrado?`
+          );
+          if (confirm) {
+            let item = JSON.parse(localStorage.getItem("dadosPac")); //Lista transformada em objeto
+
+            var myArray = item;
+            var newArray = myArray.filter((item) => item.name !== nameSeach);
+            alert(JSON.stringify(newArray)); //lista atualizada sem o nome desejada
+
+            //criar lista no localstorage com nome "dadosPac" com os valores da variável "newArray"
+            localStorage.setItem("dadosPac", JSON.stringify(newArray));
+
+            return;
           }
-         alert(confirm)
-          break
         }
-
+      }
+      alert(returno);
+      break;
+    }
   };
-
-  // Fim função teste
 
   return (
     <div className={styles.init}>
@@ -257,7 +225,7 @@ function Form() {
         </div>
       </form>
 
-      <div id="listar" >
+      <div id="listar">
         <Listar />
       </div>
       <div id="seach"></div>
@@ -274,7 +242,7 @@ function Form() {
           </label>
 
           <button onClick={seach}>Pequisar</button>
-          <button onClick={add}>Renover</button>
+          <button onClick={remove}>Renover</button>
           <div value={div} onChange={(e) => setDiv(e.target.value)}></div>
         </div>
       </div>
