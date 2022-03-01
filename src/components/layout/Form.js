@@ -30,61 +30,28 @@ function Form() {
       gender,
       status,
     };
- 
-
-
-
-
-
-
-
-
-
-
 
     let novaLista = JSON.parse(localStorage.getItem("dadosPac"));
 
-
-    
-    if (cpf.length < 11 || cpf.length > 11){
+    if (cpf.length < 11 || cpf.length > 11) {
       cpf = alert("CPF inválido! CPF precisa de 11 digitos");
     } else {
       for (let i of novaLista) {
         if (i.cpf === cpf) {
-          alert(`Já existe um cadastro com este CPF "${cpf}". Não é permitido números duplicados !`)
-          cpf.focus()
+          alert(
+            `Já existe um cadastro com este CPF "${cpf}". Não é permitido números duplicados !`
+          );
+          cpf.focus();
         }
       }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     dados.push(todosDados);
 
     localStorage.setItem("dadosPac", JSON.stringify(dados));
     navigate("/listar");
   };
-//Botão pesquisar
+  //Botão pesquisar
   function seach(event) {
     event.preventDefault();
 
