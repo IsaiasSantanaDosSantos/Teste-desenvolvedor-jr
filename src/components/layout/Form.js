@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Listar from "../pages/Listar";
-//import PesquisarPaciente from "../pages/PesquisarPaciente";
+import { Link } from "react-router-dom";
 
 import styles from "./Form.module.css";
 
@@ -12,8 +11,7 @@ function Form() {
   const [address, setAddress] = useState("");
   const [gender, setGender] = useState("");
   const [status, setStatus] = useState("");
-  const [nameSeach, setNameSeach] = useState("");
-  const [div, setDiv] = useState("");
+
   const navigate = useNavigate();
 
   //Botão cadastrar
@@ -32,15 +30,12 @@ function Form() {
     };
 
     let novaLista = JSON.parse(localStorage.getItem("dadosPac"));
-
     if (cpf.length < 11 || cpf.length > 11) {
-      cpf = alert("CPF inválido! CPF precisa de 11 digitos");
+      alert("CPF inválido! CPF precisa de 11 digitos");
     } else {
       for (let i of novaLista) {
         if (i.cpf === cpf) {
-          alert(
-            `Já existe um cadastro com este CPF "${cpf}". Não é permitido números duplicados !`
-          );
+          alert(`CPF "${cpf}" já cadstrado!`);
           cpf.focus();
         }
       }
@@ -49,84 +44,10 @@ function Form() {
     dados.push(todosDados);
 
     localStorage.setItem("dadosPac", JSON.stringify(dados));
+    alert(
+      "Cadastro realizado com sucesso!\nSerá encaminhado a lista de cadastro."
+    );
     navigate("/listar");
-  };
-  //Botão pesquisar
-  function seach(event) {
-    event.preventDefault();
-
-    //resgata dados do localstorage e armazena com nome "dadosPax"
-    let dados = JSON.parse(localStorage.getItem("dadosPac")) || [];
-
-    //criar lista no localstorage com nome "dadosPac" com os valores da variável "dados"
-    localStorage.setItem("dadosPac", JSON.stringify(dados));
-    //navigate("/listar"); //ir para a page lista pacientes
-
-    //tranformar a lista de string para array
-    let novaLista = JSON.parse(localStorage.getItem("dadosPac"));
-    //console.log('novaLista', novaLista)
-
-    let valid = false;
-    while (nameSeach.length === 0)
-      nameSeach = alert("Precisa digitar um nome!");
-    while (valid !== true) {
-      let confirm = `O nome ${nameSeach} não está cadastrado!`;
-      for (let i of novaLista) {
-        if (i.name === nameSeach) {
-          confirm = `${i.name} esta cadastrado`;
-          let cadastroPaciente = JSON.stringify(i);
-          document.getElementById("listar").style.display = "none";
-          document.getElementById("seach").innerHTML = cadastroPaciente;
-          //console.log(cadastroPaciente)
-        }
-      }
-      alert(confirm);
-      break;
-    }
-  }
-
-  //Botão remover
-  const remove = (event) => {
-    event.preventDefault();
-
-    //resgata dados do localstorage e armazena com nome "dadosPax"
-    let dados = JSON.parse(localStorage.getItem("dadosPac")) || [];
-
-    //criar lista no localstorage com nome "dadosPac" com os valores da variável "dados"
-    localStorage.setItem("dadosPac", JSON.stringify(dados));
-    //navigate("/listar"); //ir para a page lista pacientes
-
-    //tranformar a lista de string para array
-    let novaLista = JSON.parse(localStorage.getItem("dadosPac"));
-    //console.log('novaLista', novaLista)
-
-    let valid = false;
-    while (nameSeach.length === 0)
-      nameSeach = alert("Precisa digitar um nome!");
-    while (valid !== true) {
-      let returno = `O nome "${nameSeach}" não está cadastrado!`;
-      for (let i of novaLista) {
-        if (i.name === nameSeach) {
-          let confirm = window.confirm(
-            `Confirma a remoção de "${i.name}" da lista de cadastrado?`
-          );
-          if (confirm) {
-            let item = JSON.parse(localStorage.getItem("dadosPac")); //Lista transformada em objeto
-
-            var myArray = item;
-            var newArray = myArray.filter((item) => item.name !== nameSeach);
-            //alert(JSON.stringify(newArray)); //lista atualizada sem o nome desejada
-
-            //criar lista no localstorage com nome "dadosPac" com os valores da variável "newArray"
-            localStorage.setItem("dadosPac", JSON.stringify(newArray));
-
-            return;
-          }
-        }
-      }
-      alert(returno);
-      break;
-    }
   };
 
   return (
@@ -241,28 +162,10 @@ function Form() {
           <button>Cadastrar</button>
         </div>
       </form>
-
-      <div id="listar">
-        <Listar />
+      <div>
+        <Link to="/listar">Lista de cadastro</Link>
       </div>
       <div id="seach"></div>
-      <div>
-        <div className={styles.init}>
-          <label htmlFor="myForm">
-            Pesquisar paciente:
-            <input
-              type="search"
-              placeholder="Digite o nome..."
-              value={nameSeach}
-              onChange={(e) => setNameSeach(e.target.value)}
-            />
-          </label>
-
-          <button onClick={seach}>Pequisar</button>
-          <button onClick={remove}>Renover</button>
-          <div value={div} onChange={(e) => setDiv(e.target.value)}></div>
-        </div>
-      </div>
     </div>
   );
 }

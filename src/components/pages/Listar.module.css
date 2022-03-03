@@ -1,19 +1,22 @@
-.init form {
+.init {
+  text-align: center;
+  border: 1px solid #222;
+  padding: 0 10px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin: auto;
+}
+.init h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+  color: #c9301d;
+  margin-top: 1em;
+  padding: 0 0.2em;
+  background-color: #222;
   text-align: center;
 }
 
-.init label {
-  padding-right: 1em;
-}
-.init input {
-  padding: 5px;
-  border: none;
-  border-bottom: 1px solid #222;
-  background-color: #efefef;
-}
-
-.init button,
-.register button {
+.init button {
   margin-top: 1.5em;
   border: 2px solid #222;
   padding: 6px 20px;
@@ -21,19 +24,23 @@
   color: #222;
   font-weight: bold;
 }
-.init button:hover,
-.register button:hover {
+.init button:hover {
   color: #c9301d;
   background-color: #222;
   border: 2px solid #c9301d;
   box-shadow: 3px 4px 8px #222;
 }
 
-.init button:active,
-.register button:active {
-  box-shadow: 3px 4px 8px #c9301d;
+.init input {
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid #222;
+  background-color: #efefef;
 }
 
+.init div {
+  margin-bottom: 1.8em;
+}
 .init a {
   text-decoration: none;
   margin-top: 1.5em;
@@ -51,10 +58,11 @@
   box-shadow: 3px 4px 8px #222;
 }
 
-.init div {
-  margin-bottom: 0.8em;
+.init table {
+  margin-top: 1em;
+  margin-bottom: 1.5em;
 }
 
-.register button {
-  margin: 20px;
+#toSeach {
+  display: none;
 }

@@ -10,20 +10,7 @@ function PesquisarPaciente() {
   //localStorage.setItem("dadosPac", JSON.stringify(dados));
 
   return (
-    <div>
-      <div className={styles.init}>
-        <label htmlFor="myForm">
-          Pesquisar paciente:
-          <input
-            type="search"
-            placeholder="Digite o nome..."
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-
-        <button>Pequisar Paciente</button>
-      </div>
+    <div className={styles.init}>
       <div>
         <button>Renover Paciente</button>
       </div>
