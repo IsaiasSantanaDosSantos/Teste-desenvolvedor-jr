@@ -63,6 +63,6 @@
   margin-bottom: 1.5em;
 }
 
-#toSeach {
+#toSeach, .toSeach {
   display: none;
 }

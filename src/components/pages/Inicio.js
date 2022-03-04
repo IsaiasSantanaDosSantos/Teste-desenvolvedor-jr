@@ -5,7 +5,7 @@ function Inicio() {
   return (
     <section className={styles.home_container}>
       <h1>
-        Bem-vindo a <span>Acme Saúde</span>
+        Bem-vindo a <span>Acmi Saúde</span>
       </h1>
       <p>Cuidar de você. Esse é o nosso plano!</p>
       <a href="/cadastro">Cadastre-se</a>

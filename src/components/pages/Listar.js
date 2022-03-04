@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import html from "react-inner-html";
 import { Link } from "react-router-dom";
 
 //import PesquisarPaciente from "./PesquisarPaciente";
@@ -7,11 +8,13 @@ import styles from "./Listar.module.css";
 
 function Listar() {
   const [nameSeach, setNameSeach] = useState("");
+  //const [patientName, setPatientName] = useState("");
 
   const listaDePacientes = JSON.parse(localStorage.getItem("dadosPac")) || [];
 
-  let cadastroPaciente;
 
+  let cadastroPaciente;
+  
   function seach(event) {
     event.preventDefault();
 
@@ -36,8 +39,8 @@ function Listar() {
           confirm = `"${i.name}" esta cadastrado`;
           let cadastroPaciente = JSON.stringify(i);
           document.getElementById("listaCadastro").style.display = "none";
-          document.getElementById("toSeach").innerHTML = cadastroPaciente;
-          //console.log(cadastroPaciente)
+          document.getElementById("patientName").innerHTML = cadastroPaciente;
+          document.getElementById("toSeach").style.display = "block";
         }
       }
       alert(confirm);
@@ -135,8 +138,10 @@ function Listar() {
           <hr></hr>
         </div>
       </div>
-      <div id="toSeach">
+      <div className={styles.toSeach} id="toSeach">
         <h2>Paciente pesquisado</h2>
+        <div id="patientName">
+        </div>
       </div>
       <div>
         <Link to="/">Voltar</Link>
