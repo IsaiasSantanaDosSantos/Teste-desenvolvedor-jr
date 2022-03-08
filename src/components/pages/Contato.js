@@ -12,7 +12,7 @@ function Contato() {
           que você navegou pelo site.
         </p>
         <p>
-          Fique a voltade para gerar seu feedback, pois ele é muito imortante
+          Fique a voltade para gerar seu feedback, pois ele é muito importante
           para meu crescimento profissional e pessoal. Vou deixar os meios de
           contato caso queira conhecer mais sobre mim.
         </p>

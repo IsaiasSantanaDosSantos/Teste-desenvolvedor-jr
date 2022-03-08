@@ -1,19 +1,22 @@
 import React, { useState } from "react";
-import html from "react-inner-html";
+//import html from "react-inner-html";
 import { Link } from "react-router-dom";
-
-//import PesquisarPaciente from "./PesquisarPaciente";
 
 import styles from "./Listar.module.css";
 
 function Listar() {
   const [nameSeach, setNameSeach] = useState("");
-  //const [patientName, setPatientName] = useState("");
+ const [showListRegister, setShowListRegister] = useState(true);
+
+
+ //Testando!!
+ const hide = () => setShowListRegister(false)
+ const show = () => setShowListRegister(true)
+  //const [showPatientRegister, setShowPatientRegister] = useState(false)
+
+  
 
   const listaDePacientes = JSON.parse(localStorage.getItem("dadosPac")) || [];
-
-
-  let cadastroPaciente;
   
   function seach(event) {
     event.preventDefault();
@@ -23,7 +26,6 @@ function Listar() {
 
     //criar lista no localstorage com nome "dadosPac" com os valores da variável "dados"
     localStorage.setItem("dadosPac", JSON.stringify(dados));
-    //navigate("/listar"); //ir para a page lista pacientes
 
     //tranformar a lista de string para array
     let novaLista = JSON.parse(localStorage.getItem("dadosPac"));
@@ -38,8 +40,10 @@ function Listar() {
         if (i.name === nameSeach) {
           confirm = `"${i.name}" esta cadastrado`;
           let cadastroPaciente = JSON.stringify(i);
+          //setShowListRegister(false)
           document.getElementById("listaCadastro").style.display = "none";
           document.getElementById("patientName").innerHTML = cadastroPaciente;
+          //setShowPatientRegister(true)
           document.getElementById("toSeach").style.display = "block";
         }
       }
@@ -57,7 +61,6 @@ function Listar() {
 
     //criar lista no localstorage com nome "dadosPac" com os valores da variável "dados"
     localStorage.setItem("dadosPac", JSON.stringify(dados));
-    //navigate("/listar"); //ir para a page lista pacientes
 
     //tranformar a lista de string para array
     let novaLista = JSON.parse(localStorage.getItem("dadosPac"));
@@ -109,8 +112,9 @@ function Listar() {
           <button onClick={seach}>Pequisar</button>
           <button onClick={remove}>Remover</button>
         </div>
-        <hr></hr>
+        {showListRegister ? 
         <div id="listaCadastro">
+        <hr></hr>
           <table>
             <thead>
               <tr>
@@ -137,11 +141,22 @@ function Listar() {
           </table>
           <hr></hr>
         </div>
+        : null }
+      </div>
+      <div>
+        
+      <button onClick={hide}>testeEscoderLista</button>
+      <br></br>
+      <button onClick={show}>testeMostrarLista</button>
+      <br></br>
       </div>
       <div className={styles.toSeach} id="toSeach">
         <h2>Paciente pesquisado</h2>
+        <hr></hr>
+        <br></br>
         <div id="patientName">
         </div>
+        <hr></hr>
       </div>
       <div>
         <Link to="/">Voltar</Link>
