@@ -61,8 +61,18 @@
 .init table {
   margin-top: 1em;
   margin-bottom: 1.5em;
+  margin: auto;
 }
 
-#toSeach, .toSeach {
-  display: none;
+hr {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+button {
+  margin-left: 1em;
+}
+
+h2 {
+  margin-bottom: 1em;
 }
