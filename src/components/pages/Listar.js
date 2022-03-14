@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 
 import styles from "./Listar.module.css";
 
+//Testes
+let patientRecord;
+let eu;
+let codigo;
+
 function Listar() {
   const [nameSearch, setNameSearch] = useState("");
   const [showListRegister, setShowListRegister] = useState(true);
@@ -25,7 +30,6 @@ function Listar() {
 
     //tranformar a lista de string para array
     let novaLista = JSON.parse(localStorage.getItem("dadosPac"));
-    //console.log('novaLista', novaLista)
 
     let valid = false;
     while (nameSearch.length === 0)
@@ -35,13 +39,22 @@ function Listar() {
       for (let i of novaLista) {
         if (i.name === nameSearch) {
           confirm = `"${i.name}" esta cadastrado`;
-          let cadastroPaciente = JSON.stringify(i);
+          patientRecord = JSON.stringify(i);
+
+          eu =
+            "Nome: " +
+            i.name +
+            "<br>CPF: " +
+            i.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{1})/, "$1.$2.$3-$4") +
+            "<br>Data nasc: " +
+            i.birthdate +
+            "<br>Sexo: " +
+            i.gender +
+            "<br>Status: " +
+            i.status;
 
           setShowListRegister(false);
           setShowSearch(true);
-
-          //Preciso eliminar esse 'getElementById()"
-          document.getElementById("patientName").innerHTML = cadastroPaciente;
         }
       }
       alert(confirm);
@@ -110,10 +123,12 @@ function Listar() {
           <button onClick={remove}>Remover</button>
         </div>
         {showSearch ? ( //Se confirma null
-          <div className={styles.toSearch} id="toSearch">
+          <div className={styles.toSearch}>
             <hr></hr>
             <h2>Paciente pesquisado</h2>
-            <div id="patientName"></div>
+
+            <div dangerouslySetInnerHTML={{ __html: eu }}></div>
+
             <hr></hr>
             <div>
               <button onClick={show}>Mostrar Lista Cadastro</button>
