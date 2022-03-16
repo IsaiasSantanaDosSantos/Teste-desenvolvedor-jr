@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-//import html from "react-inner-html";
+import {Button, createTheme, ThemeProvider} from "@mui/material"
 import { Link } from "react-router-dom";
 
 import styles from "./Listar.module.css";
+import { red } from "@mui/material/colors";
 
 //Tests
 let patientRecord;
@@ -18,6 +19,25 @@ function Listar() {
   const show = () => setShowListRegister(true);
 
   const listaDePacientes = JSON.parse(localStorage.getItem("dadosPac")) || [];
+
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#fff'
+      },
+    },
+    breakpoints: {
+      values: {
+        mobile: 0,
+        tablet: 640,
+        laptop: 1024,
+        desktop: 1200,
+      },
+    },
+  });
+  
+
 
   function search(event) {
     event.preventDefault();
@@ -131,8 +151,19 @@ function Listar() {
 
             <hr></hr>
             <div>
-              <button onClick={show}>Mostrar Lista Cadastro</button>
-              <button onClick={hide}>Esconder Lista Cadastro</button>
+
+
+            
+            <ThemeProvider theme={theme}>
+              <Button variant="contained" 
+              color="primary" onClick={show}>Mostrar Lista Cadastro</Button>
+              <Button variant="contained" 
+              color="primary" onClick={hide}>Esconder Lista Cadastro</Button>
+            </ThemeProvider>
+
+
+
+              
             </div>
           </div>
         ) : null}

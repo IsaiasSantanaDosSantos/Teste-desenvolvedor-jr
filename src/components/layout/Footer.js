@@ -20,7 +20,7 @@ function Footer() {
         </li>
       </ul>
       <p className={styles.copy_right}>
-        <span>Acme Saúde</span> &copy; 2022 - Desenvolvido por Isaias Santana
+        <span>Acmi Saúde</span> &copy; 2022 - Desenvolvido por Isaias Santana
         dos Santos
       </p>
     </footer>
