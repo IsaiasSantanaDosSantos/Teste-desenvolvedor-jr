@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import styles from "./Listar.module.css";
 
-//Testes
+//Tests
 let patientRecord;
 let eu;
 let codigo;
