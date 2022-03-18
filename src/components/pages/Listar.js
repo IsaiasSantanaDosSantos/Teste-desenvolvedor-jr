@@ -3,7 +3,6 @@ import {Button, createTheme, ThemeProvider} from "@mui/material"
 import { Link } from "react-router-dom";
 
 import styles from "./Listar.module.css";
-import { red } from "@mui/material/colors";
 
 //Tests
 let patientRecord;

@@ -28,21 +28,22 @@
   margin: 2em 0;
 }
 
-.home_container a {
+.home_container button {
   border: 2px solid #222;
   padding: 6px;
   text-decoration: none;
   color: #222;
   font-weight: bold;
+  border-radius: 0;
 }
 
-.home_container a:hover {
+.home_container button:hover {
   color: #c9301d;
   background-color: #222;
   border: 2px solid #c9301d;
   box-shadow: 3px 4px 8px #222;
 }
 
-.home_container a:active {
+.home_container button:active {
   box-shadow: 3px 4px 8px #c9301d;
 }

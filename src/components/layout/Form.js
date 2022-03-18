@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Button, createTheme, ThemeProvider } from "@mui/material";
 
 import styles from "./Form.module.css";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#fff",
+    },
+  },
+});
 
 function Form() {
   const [name, setName] = useState("");
@@ -52,7 +61,7 @@ function Form() {
 
   return (
     <div className={styles.init}>
-      <form name="myForm" id="registerForm" onSubmit={armazenar}>
+      <form name="myForm" onSubmit={armazenar}>
         <div>
           <label>
             Nome:
@@ -159,13 +168,17 @@ function Form() {
           </label>
         </div>
         <div>
-          <button>Cadastrar</button>
+          <ThemeProvider theme={theme}>
+            <Button variant="contained" color="primary">
+              Cadastrar
+            </Button>
+          </ThemeProvider>
+          <button>Botão</button>
         </div>
       </form>
       <div>
         <Link to="/listar">Lista de cadastro</Link>
       </div>
-      <div id="seach"></div>
     </div>
   );
 }
