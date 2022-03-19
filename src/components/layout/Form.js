@@ -23,6 +23,10 @@ function Form() {
 
   const navigate = useNavigate();
 
+  function registerList() {
+    navigate("/listar");
+  }
+
   //Botão cadastrar
   const armazenar = (event) => {
     event.preventDefault();
@@ -56,7 +60,7 @@ function Form() {
     alert(
       "Cadastro realizado com sucesso!\nSerá encaminhado a lista de cadastro."
     );
-    navigate("/listar");
+    // navigate("/listar");
   };
 
   return (
@@ -169,15 +173,23 @@ function Form() {
         </div>
         <div>
           <ThemeProvider theme={theme}>
-            <Button variant="contained" color="primary">
-              Cadastrar
+            <Button variant="contained" color="primary" onClick={armazenar}>
+              Cadastrar(test)
             </Button>
           </ThemeProvider>
-          <button>Botão</button>
+
+
+          <button>Botão(older)</button>
+
+
         </div>
       </form>
       <div>
-        <Link to="/listar">Lista de cadastro</Link>
+        <ThemeProvider theme={theme}>
+          <Button variant="contained" color="primary" onClick={registerList}>
+            Lista de cadastro
+          </Button>
+        </ThemeProvider>
       </div>
     </div>
   );
