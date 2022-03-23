@@ -1,7 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { Button, createTheme, ThemeProvider } from "@mui/material";
+//import { Link } from "react-router-dom";
+import {
+  Button,
+  createTheme,
+  ThemeProvider,
+  Grid,
+  TextField,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+} from "@mui/material";
 
 import styles from "./Form.module.css";
 
@@ -12,6 +23,8 @@ const theme = createTheme({
     },
   },
 });
+
+let dados;
 
 function Form() {
   const [name, setName] = useState("");
@@ -42,155 +55,164 @@ function Form() {
       status,
     };
 
-    let novaLista = JSON.parse(localStorage.getItem("dadosPac"));
-    if (cpf.length < 11 || cpf.length > 11) {
+    let novaLista = JSON.parse(localStorage.getItem("dadosPac")) || [];
+
+    if (name.length <= 9) {
+      alert("Digite o nome completo.");
+      return;
+    } else if (birthdate === "") {
+      alert("Digite a data de nascimento!");
+      return;
+    } else if (cpf === "") {
+      alert("Digite o CPF!")
+      return
+    } else if (cpf.length < 11 || cpf.length > 11) {
       alert("CPF inválido! CPF precisa de 11 digitos");
+      return;
     } else {
       for (let i of novaLista) {
         if (i.cpf === cpf) {
           alert(`CPF "${cpf}" já cadstrado!`);
-          cpf.focus();
+          return
         }
       }
     }
+    if (gender === "") {
+      alert("Escolha o sexo!");
+      return;
+    }
+    if (status === "") {
+      alert("Escolha qual o Status");
+      return;
+    }
 
+    
     dados.push(todosDados);
 
     localStorage.setItem("dadosPac", JSON.stringify(dados));
-    alert(
-      "Cadastro realizado com sucesso!\nSerá encaminhado a lista de cadastro."
-    );
+    alert("Cadastro realizado com sucesso!");
     // navigate("/listar");
   };
 
   return (
-    <div className={styles.init}>
+    <div>
       <form name="myForm" onSubmit={armazenar}>
-        <div>
-          <label>
-            Nome:
-            <input
-              type="text"
-              id="name"
-              placeholder="Digite o seu nome..."
-              required
+        <Grid container spacing={2} >
+          <Grid item sm={6} xs={12}>
+            <TextField
+              fullWidth={true}
+              name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              label="Nome:"
+              placeholder="Digite o nome completo..."
             />
-          </label>
-        </div>
-        <div>
-          <label>
-            Data nascimento:
-            <input
-              id="nasc"
-              name="data"
-              type="date"
-              required
+          </Grid>
+          <Grid item sm={6} xs={12}>
+            <TextField
+            fullWidth={true}
+              name="birthdate"
               value={birthdate}
               onChange={(e) => setBirthdate(e.target.value)}
+              label="Data Nascimento:"
             />
-          </label>
-        </div>
-        <div>
-          <label>
-            CPF:
-            <input
-              id="cpf"
-              name="cpf"
+          </Grid>
+          <Grid item sm={6} xs={12}>
+            <TextField
+              fullWidth={true}
               type="text"
-              placeholder="Apenas números..."
+              name="cpf"
               value={cpf}
               onChange={(e) => setCpf(e.target.value)}
-              required
+              label="CPF:"
+              placeholder="Digite o CPF..."
             />
-          </label>
-        </div>
-        <div>
-          <label>Sexo:</label>
+          </Grid>
 
-          <input
-            type="radio"
-            id="masc"
-            name="sexo"
-            value="masc"
-            onChange={(e) => setGender(e.target.value)}
-            checked={gender === "masc"}
-            required
-          />
-          <label htmlFor="masc">Masculino</label>
-
-          <input
-            type="radio"
-            id="fem"
-            name="sexo"
-            value="fem"
-            onChange={(e) => setGender(e.target.value)}
-            checked={gender === "fem"}
-            required
-          />
-          <label htmlFor="fem">Feminino</label>
-
-          <input
-            type="radio"
-            id="outro"
-            name="sexo"
-            value="outro"
-            onChange={(e) => setGender(e.target.value)}
-            checked={gender === "outro"}
-            required
-          />
-          <label htmlFor="outro">Outro</label>
-        </div>
-        <div>
-          <label>
-            Endereço:
-            <input
-              id="endereco"
-              name="endereco"
-              type="text"
+          <Grid item sm={6} xs={12}>
+            <FormControl >
+              <FormLabel id="demo-radio-buttons-group-label">Sexo:</FormLabel>
+              <RadioGroup
+                row={true}
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="female"
+                name="radio-buttons-group"
+              >
+                <FormControlLabel
+                  htmlFor="fem"
+                  value="fem"
+                  control={<Radio />}
+                  label="Feminino"
+                  onChange={(e) => setGender(e.target.value)}
+                  checked={gender === "fem"}
+                />
+                <FormControlLabel
+                  htmlFor="masc"
+                  value="masc"
+                  control={<Radio />}
+                  label="Masculino"
+                  onChange={(e) => setGender(e.target.value)}
+                  checked={gender === "masc"}
+                />
+                <FormControlLabel
+                  htmlFor="outro"
+                  value="outro"
+                  control={<Radio />}
+                  label="Outro"
+                  onChange={(e) => setGender(e.target.value)}
+                  checked={gender === "outro"}
+                />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+          <Grid item sm={6} xs={12}>
+            <TextField
+              fullWidth={true}
+              name="address"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              placeholder="Digite o seu endereço..."
+              label="Endereço:"
+              placeholder="Digite o endereço..."
             />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="status">
-            Status:
-            <select
-              name="status"
-              id="status"
-              required
+          </Grid>
+
+          <Grid item sm={6} xs={12}>
+            <FormControl
               value={status}
               onChange={(e) => setStatus(e.target.value)}
             >
-              <option value="">Escolha uma opsão</option>
-              <option value="ativo">Ativo</option>
-              <option value="inativo">Inativo</option>
-            </select>
-          </label>
-        </div>
-        <div>
-          <ThemeProvider theme={theme}>
-            <Button variant="contained" color="primary" onClick={armazenar}>
-              Cadastrar(test)
-            </Button>
-          </ThemeProvider>
-
-
-          <button>Botão(older)</button>
-
-
-        </div>
+              <FormLabel id="demo-radio-buttons-group-label">Status:</FormLabel>
+              <RadioGroup
+                row={true}
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="ativo"
+                name="radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="ativo"
+                  control={<Radio />}
+                  label="Ativo"
+                />
+                <FormControlLabel
+                  value="inativo"
+                  control={<Radio />}
+                  label="Inativo"
+                />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+          <div >
+            <ThemeProvider theme={theme}>
+              <Button variant="contained" color="primary" onClick={armazenar}
+              item sm={6} xs={12}>Cadastrar
+              </Button>
+              <Button variant="contained" color="primary" onClick={registerList}
+              item sm={6} xs={12} >Lista de cadastro
+              </Button>
+            </ThemeProvider>
+          </div>
+        </Grid>
       </form>
-      <div>
-        <ThemeProvider theme={theme}>
-          <Button variant="contained" color="primary" onClick={registerList}>
-            Lista de cadastro
-          </Button>
-        </ThemeProvider>
-      </div>
     </div>
   );
 }
