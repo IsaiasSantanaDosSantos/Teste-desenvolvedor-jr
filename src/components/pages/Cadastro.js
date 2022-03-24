@@ -1,13 +1,8 @@
-import React, { useEffect } from "react";
-
 import Form from "../layout/Form.js";
 
 import styles from "./Cadastro.module.css";
 
 function Cadastro() {
-  
-  
-
   return (
     <div className={styles.init}>
       <h1>Cadastro</h1>

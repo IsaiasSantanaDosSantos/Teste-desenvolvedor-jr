@@ -41,6 +41,9 @@ function Form() {
   }
 
   //Botão cadastrar
+  function loadPageRegister(){
+    document.location.reload(true);
+  }
   const armazenar = (event) => {
     event.preventDefault();
 
@@ -92,7 +95,10 @@ function Form() {
     localStorage.setItem("dadosPac", JSON.stringify(dados));
     alert("Cadastro realizado com sucesso!");
     // navigate("/listar");
+    loadPageRegister()
   };
+
+  
 
   return (
     <div>
@@ -192,19 +198,23 @@ function Form() {
                   value="ativo"
                   control={<Radio />}
                   label="Ativo"
+                  onChange={(e) => setStatus(e.target.value)}
+                  checked={status === "ativo"}
                 />
                 <FormControlLabel
                   value="inativo"
                   control={<Radio />}
                   label="Inativo"
+                  onChange={(e) => setStatus(e.target.value)}
+                  checked={status === "inativo"}
                 />
               </RadioGroup>
             </FormControl>
           </Grid>
           <div >
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme} >
               <Button variant="contained" color="primary" onClick={armazenar}
-              item sm={6} xs={12}>Cadastrar
+              item sm={6} xs={12} >Cadastrar
               </Button>
               <Button variant="contained" color="primary" onClick={registerList}
               item sm={6} xs={12} >Lista de cadastro

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {Button, createTheme, ThemeProvider} from "@mui/material"
 import { Link } from "react-router-dom";
 
@@ -82,6 +82,11 @@ function Listar() {
   }
 
   //Botão remover
+  
+  function loadPageRemove(){
+    document.location.reload(true);
+  }
+
   const remove = (event) => {
     event.preventDefault();
 
@@ -114,15 +119,21 @@ function Listar() {
 
             //criar lista no localstorage com nome "dadosPac" com os valores da variável "newArray"
             localStorage.setItem("dadosPac", JSON.stringify(newArray));
-
+            loadPageRemove()
             return;
           }
         }
+        
       }
       alert(returno);
       break;
     }
   };
+/*
+  useEffect(() => {
+    //document.location.reload(true);
+  }, [])
+*/
 
   return (
     <div className={styles.init}>
