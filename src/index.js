@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { CssBaseline } from '@mui/material';
+import Header from "./components/Header"
 
 ReactDOM.render(
   <React.StrictMode>

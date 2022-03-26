@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Button, createTheme, ThemeProvider} from "@mui/material"
+import { Button, createTheme, ThemeProvider } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import styles from "./Listar.module.css";
@@ -19,11 +19,10 @@ function Listar() {
 
   const listaDePacientes = JSON.parse(localStorage.getItem("dadosPac")) || [];
 
-
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#fff'
+        main: "#fff",
       },
     },
     breakpoints: {
@@ -35,8 +34,6 @@ function Listar() {
       },
     },
   });
-  
-
 
   function search(event) {
     event.preventDefault();
@@ -82,8 +79,8 @@ function Listar() {
   }
 
   //Botão remover
-  
-  function loadPageRemove(){
+
+  function loadPageRemove() {
     document.location.reload(true);
   }
 
@@ -119,17 +116,16 @@ function Listar() {
 
             //criar lista no localstorage com nome "dadosPac" com os valores da variável "newArray"
             localStorage.setItem("dadosPac", JSON.stringify(newArray));
-            loadPageRemove()
+            loadPageRemove();
             return;
           }
         }
-        
       }
       alert(returno);
       break;
     }
   };
-/*
+  /*
   useEffect(() => {
     //document.location.reload(true);
   }, [])
@@ -161,19 +157,14 @@ function Listar() {
 
             <hr></hr>
             <div>
-
-
-            
-            <ThemeProvider theme={theme}>
-              <Button variant="contained" 
-              color="primary" onClick={show}>Mostrar Lista Cadastro</Button>
-              <Button variant="contained" 
-              color="primary" onClick={hide}>Esconder Lista Cadastro</Button>
-            </ThemeProvider>
-
-
-
-              
+              <ThemeProvider theme={theme}>
+                <Button variant="contained" color="primary" onClick={show}>
+                  Mostrar Lista Cadastro
+                </Button>
+                <Button variant="contained" color="primary" onClick={hide}>
+                  Esconder Lista Cadastro
+                </Button>
+              </ThemeProvider>
             </div>
           </div>
         ) : null}

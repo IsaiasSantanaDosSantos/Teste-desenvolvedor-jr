@@ -41,7 +41,7 @@ function Form() {
   }
 
   //Botão cadastrar
-  function loadPageRegister(){
+  function loadPageRegister() {
     document.location.reload(true);
   }
   const armazenar = (event) => {
@@ -67,8 +67,8 @@ function Form() {
       alert("Digite a data de nascimento!");
       return;
     } else if (cpf === "") {
-      alert("Digite o CPF!")
-      return
+      alert("Digite o CPF!");
+      return;
     } else if (cpf.length < 11 || cpf.length > 11) {
       alert("CPF inválido! CPF precisa de 11 digitos");
       return;
@@ -76,7 +76,7 @@ function Form() {
       for (let i of novaLista) {
         if (i.cpf === cpf) {
           alert(`CPF "${cpf}" já cadstrado!`);
-          return
+          return;
         }
       }
     }
@@ -89,21 +89,18 @@ function Form() {
       return;
     }
 
-    
     dados.push(todosDados);
 
     localStorage.setItem("dadosPac", JSON.stringify(dados));
     alert("Cadastro realizado com sucesso!");
     // navigate("/listar");
-    loadPageRegister()
+    loadPageRegister();
   };
-
-  
 
   return (
     <div>
       <form name="myForm" onSubmit={armazenar}>
-        <Grid container spacing={2} >
+        <Grid container spacing={2}>
           <Grid item sm={6} xs={12}>
             <TextField
               fullWidth={true}
@@ -116,7 +113,7 @@ function Form() {
           </Grid>
           <Grid item sm={6} xs={12}>
             <TextField
-            fullWidth={true}
+              fullWidth={true}
               name="birthdate"
               value={birthdate}
               onChange={(e) => setBirthdate(e.target.value)}
@@ -136,7 +133,7 @@ function Form() {
           </Grid>
 
           <Grid item sm={6} xs={12}>
-            <FormControl >
+            <FormControl>
               <FormLabel id="demo-radio-buttons-group-label">Sexo:</FormLabel>
               <RadioGroup
                 row={true}
@@ -211,13 +208,27 @@ function Form() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <div >
-            <ThemeProvider theme={theme} >
-              <Button variant="contained" color="primary" onClick={armazenar}
-              item sm={6} xs={12} >Cadastrar
+          <div>
+            <ThemeProvider theme={theme}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={armazenar}
+                item
+                sm={6}
+                xs={12}
+              >
+                Cadastrar
               </Button>
-              <Button variant="contained" color="primary" onClick={registerList}
-              item sm={6} xs={12} >Lista de cadastro
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={registerList}
+                item
+                sm={6}
+                xs={12}
+              >
+                Lista de cadastro
               </Button>
             </ThemeProvider>
           </div>
