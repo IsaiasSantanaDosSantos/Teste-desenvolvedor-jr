@@ -1,31 +1,69 @@
-import { Link } from "react-router-dom";
-import Container from "./Container";
+import React, { useState } from "react";
+import {
+  AppBar,
+  Tab,
+  Tabs,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+  useTheme,
+  Avatar,
+} from "@mui/material";
+import DrawerComp from "./DrawerCompo";
 
-import styles from "./Navbar.module.css";
+const pages = ["Início", "Cadastro", "Contato"];
 
-import logo from "../../img/logo-acmi.png";
+const MenuLateral = () => {
+  const [value, setValue] = useState();
 
-function Navbar() {
+  const theme = useTheme();
+
+  const isMath = useMediaQuery(theme.breakpoints.down("md"));
+
+  
+
   return (
-    <nav className={styles.navbar}>
-      <Container>
-        <Link to="/">
-          <img src={logo} alt="Acime Saúde" className={styles.img} />
-        </Link>
-        <ul className={styles.list}>
-          <li className={styles.item}>
-            <Link to="/">Início</Link>
-          </li>
-          <li className={styles.item}>
-            <Link to="/cadastro">Cadastro</Link>
-          </li>
-          <li className={styles.item}>
-            <Link to="/contato">Contato</Link>
-          </li>
-        </ul>
-      </Container>
-    </nav>
+    <React.Fragment>
+      <AppBar sx={{ background: "#222" }} position="sticky" >
+        <Toolbar >
+          <Avatar
+            sx={{
+              marginRight: "auto",
+              width: 80,
+              height: 40,
+              marginTop: 2,
+              marginBottom: 2,
+            }}
+            alt="Acmi Saúde"
+            src="/logo-acmi.png"
+            variant="square"
+          ></Avatar>
+          {isMath ? (
+            <>
+              <Typography
+                sx={{ fontSize: "2rem", paddingLeft: "10%", color: "#C9301D" }}
+              ></Typography>
+              <DrawerComp />
+            </>
+          ) : (
+            <>
+              <Tabs
+                sx={{ marginLeft: "auto", color: "#C9301D" }}
+                textColor="inherit"
+                value={value}
+                onChange={(e, value) => setValue(value)}
+                indicatorColor="primary"
+              >
+                {pages.map((page, index) => (
+                  <Tab key={index} label={page} />
+                ))}
+              </Tabs>
+            </>
+          )}
+        </Toolbar>
+      </AppBar>
+    </React.Fragment>
   );
-}
+};
 
-export default Navbar;
+export default MenuLateral;

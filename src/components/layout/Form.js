@@ -14,7 +14,6 @@ import {
   Radio,
 } from "@mui/material";
 
-import styles from "./Form.module.css";
 
 const theme = createTheme({
   palette: {

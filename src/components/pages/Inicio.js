@@ -1,7 +1,7 @@
 import styles from "./Inicio.module.css";
 import saude from "../../img/saude.png";
 import { useNavigate } from "react-router-dom";
-import {Button, createTheme, ThemeProvider} from "@mui/material"
+import {Button, createTheme, ThemeProvider, Grid, Card } from "@mui/material"
 
 function Inicio() {
 
@@ -12,6 +12,14 @@ function Inicio() {
     palette: {
       primary: {
         main: '#fff'
+      },
+    },
+    breakpoints: {
+      values: {
+        mobile: 0,
+        tablet: 640,
+        laptop: 1024,
+        desktop: 1200,
       },
     },
   });
@@ -31,7 +39,9 @@ function Inicio() {
         <Button variant="contained"color="primary" onClick={goRegister}>Cadastre-se
         </Button>
       </ThemeProvider>
-      <img src={saude} alt="Saúde" />
+      <Card variant="underline" item sm={12}>
+       <img src={saude} alt="Saúde" />
+      </Card>
     </section>
   );
 }
