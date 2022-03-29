@@ -9,7 +9,10 @@ import {
   useTheme,
   Avatar,
 } from "@mui/material";
-import DrawerComp from "./DrawerCompo";
+import DrawerComp from "./DrawerComp";
+//import { Route, Routes, useNavigate } from "react-router-dom";
+
+import Cadastro from "../pages/Cadastro";
 
 const pages = ["Início", "Cadastro", "Contato"];
 
@@ -18,14 +21,30 @@ const MenuLateral = () => {
 
   const theme = useTheme();
 
-  const isMath = useMediaQuery(theme.breakpoints.down("md"));
+  const isMath = useMediaQuery(theme.breakpoints.down("sm"));
 
-  
+  //Routes
+  function changeToInitialPage() {
+    window.location.href = "http://localhost:3000";
+  }
 
+  function changeToRegisterPage() {
+    window.location.href = "http://localhost:3000/cadastro";
+  }
+  function changeToContactPage() {
+    window.location.href = "http://localhost:3000/contato";
+  }
+
+  /*
+Este bloco estava entre a tag Tabs:
+{pages.map((page, index) => (
+  <Tab key={index} label={page} />
+))}
+ */
   return (
     <React.Fragment>
-      <AppBar sx={{ background: "#222" }} position="sticky" >
-        <Toolbar >
+      <AppBar sx={{ background: "#222" }} position="sticky">
+        <Toolbar>
           <Avatar
             sx={{
               marginRight: "auto",
@@ -40,9 +59,7 @@ const MenuLateral = () => {
           ></Avatar>
           {isMath ? (
             <>
-              <Typography
-                sx={{ fontSize: "2rem", paddingLeft: "10%", color: "#C9301D" }}
-              ></Typography>
+              <Typography></Typography>
               <DrawerComp />
             </>
           ) : (
@@ -54,9 +71,9 @@ const MenuLateral = () => {
                 onChange={(e, value) => setValue(value)}
                 indicatorColor="primary"
               >
-                {pages.map((page, index) => (
-                  <Tab key={index} label={page} />
-                ))}
+                <Tab label="Início" onClick={changeToInitialPage} />
+                <Tab label="Cadastro" onClick={changeToRegisterPage} />
+                <Tab label="Contato" onClick={changeToContactPage} />
               </Tabs>
             </>
           )}
