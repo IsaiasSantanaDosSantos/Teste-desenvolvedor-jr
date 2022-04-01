@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Button, createTheme, ThemeProvider } from "@mui/material";
-import { Link } from "react-router-dom";
+import {
+  Button,
+  createTheme,
+  Grid,
+  TextField,
+  ThemeProvider,
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./Listar.module.css";
 
 //Tests
 let patientRecord;
-let eu;
+let patient;
 let codigo;
 
 function Listar() {
@@ -18,6 +24,8 @@ function Listar() {
   const show = () => setShowListRegister(true);
 
   const listaDePacientes = JSON.parse(localStorage.getItem("dadosPac")) || [];
+
+  const navigate = useNavigate();
 
   const theme = createTheme({
     palette: {
@@ -57,7 +65,7 @@ function Listar() {
           confirm = `"${i.name}" esta cadastrado`;
           patientRecord = JSON.stringify(i);
 
-          eu =
+          patient =
             "Nome: " +
             i.name +
             "<br>CPF: " +
@@ -131,44 +139,81 @@ function Listar() {
   }, [])
 */
 
+  function backRegistrationPage() {
+    navigate("/cadastro");
+  }
+
   return (
     <div className={styles.init}>
-      <div>
-        <h1>Lista de cadastro</h1>
-        <div>
-          <label>
-            Pesquisar paciente:
-            <input
-              type="search"
-              placeholder="Digite o nome..."
-              value={nameSearch}
-              onChange={(e) => setNameSearch(e.target.value)}
-            />
-          </label>
-          <button onClick={search}>Pequisar</button>
-          <button onClick={remove}>Remover</button>
-        </div>
-        {showSearch ? ( //Se confirma null
-          <div className={styles.toSearch}>
-            <hr></hr>
-            <h2>Paciente pesquisado</h2>
+      <h1>Lista de cadastro</h1>
+      <Grid container spacing={1}>
+        <Grid item sm={12} xs={12}>
+          <TextField
+            fullWidth={true}
+            name="name"
+            value={nameSearch}
+            onChange={(e) => setNameSearch(e.target.value)}
+            label="Pesquisa por nome:"
+            placeholder="Digite o nome completo..."
+          />
+        </Grid>
+        <Grid item sm={6} xs={12}>
+          <Button
+            fullWidth={true}
+            sx={{
+              whiteSpace: "nowrap",
+              marginTop: "1.5em",
+              border: "2px solid #222",
+              padding: "6px 20px",
+              color: "#222",
+              fontWeight: "bold",
+              borderRadius: "0",
+            }}
+            onClick={search}
+          >
+            Pequisar
+          </Button>
+        </Grid>
+        <Grid item sm={6} xs={12}>
+          <Button
+            fullWidth={true}
+            sx={{
+              whiteSpace: "nowrap",
+              marginTop: "1.5em",
+              border: "2px solid #222",
+              padding: "6px 20px",
+              color: "#222",
+              fontWeight: "bold",
+              borderRadius: "0",
+            }}
+            onClick={remove}
+          >
+            Remover
+          </Button>
+        </Grid>
+        {showSearch ? (
+          <Grid item sm={6} xs={12}>
+            <div className={styles.toSearch}>
+              <hr></hr>
+              <h2>Paciente pesquisado</h2>
 
-            <div dangerouslySetInnerHTML={{ __html: eu }}></div>
+              <div dangerouslySetInnerHTML={{ __html: patient }}></div>
 
-            <hr></hr>
-            <div>
-              <ThemeProvider theme={theme}>
-                <Button variant="contained" color="primary" onClick={show}>
-                  Mostrar Lista Cadastro
-                </Button>
-                <Button variant="contained" color="primary" onClick={hide}>
-                  Esconder Lista Cadastro
-                </Button>
-              </ThemeProvider>
+              <hr></hr>
+              <div>
+                <ThemeProvider theme={theme}>
+                  <Button variant="contained" color="primary" onClick={show}>
+                    Mostrar Lista Cadastro
+                  </Button>
+                  <Button variant="contained" color="primary" onClick={hide}>
+                    Esconder Lista Cadastro
+                  </Button>
+                </ThemeProvider>
+              </div>
             </div>
-          </div>
+          </Grid>
         ) : null}
-        {showListRegister ? ( //Se confirma null
+        {showListRegister ? (
           <div id="listaCadastro">
             <hr></hr>
             <h2>Lista de pacientes cadastrados</h2>
@@ -199,10 +244,23 @@ function Listar() {
             <hr></hr>
           </div>
         ) : null}
-      </div>
-      <div>
-        <Link to="/">Voltar</Link>
-      </div>
+      </Grid>
+      <Grid item sm={6} xs={12}>
+        <Button
+          sx={{
+            whiteSpace: "nowrap",
+            marginTop: "1.5em",
+            border: "2px solid #222",
+            padding: "6px 20px",
+            color: "#222",
+            fontWeight: "bold",
+            borderRadius: "0",
+          }}
+          onClick={backRegistrationPage}
+        >
+          Cadastro
+        </Button>
+      </Grid>
     </div>
   );
 }

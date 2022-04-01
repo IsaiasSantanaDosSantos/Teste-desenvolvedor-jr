@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 //import { Link } from "react-router-dom";
+import styles from "./Form.module.css";
 import {
   Button,
   createTheme,
@@ -13,7 +14,8 @@ import {
   FormControlLabel,
   Radio,
 } from "@mui/material";
-
+import { style } from "@mui/system";
+import { ClassNames } from "@emotion/react";
 
 const theme = createTheme({
   palette: {
@@ -97,7 +99,7 @@ function Form() {
   };
 
   return (
-    <div>
+    <div className={styles.home_container}>
       <form name="myForm" onSubmit={armazenar}>
         <Grid container spacing={2}>
           <Grid item sm={6} xs={12}>
@@ -130,7 +132,16 @@ function Form() {
               placeholder="Digite o CPF..."
             />
           </Grid>
-
+          <Grid item sm={6} xs={12}>
+            <TextField
+              fullWidth={true}
+              name="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              label="Endereço:"
+              placeholder="Digite o endereço..."
+            />
+          </Grid>
           <Grid item sm={6} xs={12}>
             <FormControl>
               <FormLabel id="demo-radio-buttons-group-label">Sexo:</FormLabel>
@@ -167,16 +178,6 @@ function Form() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item sm={6} xs={12}>
-            <TextField
-              fullWidth={true}
-              name="address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              label="Endereço:"
-              placeholder="Digite o endereço..."
-            />
-          </Grid>
 
           <Grid item sm={6} xs={12}>
             <FormControl
@@ -207,30 +208,47 @@ function Form() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <div>
             <ThemeProvider theme={theme}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={armazenar}
-                item
-                sm={6}
-                xs={12}
-              >
-                Cadastrar
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={registerList}
-                item
-                sm={6}
-                xs={12}
-              >
-                Lista de cadastro
-              </Button>
+              <Grid item sm={6} xs={12}>
+                <Button 
+                  fullWidth={true}
+                  sx={{
+                    marginTop: "1.5em",
+                    border: "2px solid #222",
+                    padding: "6px 20px",
+                    color: "#222",
+                    fontWeight: "bold",
+                    borderRadius: "0"
+                  }}
+                  variant="contained"
+                  color="primary"
+                  onClick={armazenar}
+                >
+                  Cadastrar
+                </Button>
+              </Grid>
+              <Grid item sm={6} xs={12}>
+                <Button
+                  fullWidth={true}
+                  sx={{
+                    whiteSpace: "nowrap",
+                    marginTop: "1.5em",
+                    border: "2px solid #222",
+                    padding: "6px 20px",
+                    color: "#222",
+                    fontWeight: "bold",
+                    borderRadius: "0"
+                  }}
+                  variant="contained"
+                  onClick={registerList}
+                  item
+                  sm={6}
+                  xs={12}
+                >
+                  Lista de cadastro
+                </Button>
+              </Grid>
             </ThemeProvider>
-          </div>
         </Grid>
       </form>
     </div>

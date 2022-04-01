@@ -1,0 +1,25 @@
+
+
+
+.list {
+  list-style: none;
+  float: right;
+  padding-top: 2em;
+}
+
+li {
+  padding-top: 2em;
+}
+
+.item a {
+  margin-right: 1em;
+  color: #c9301d;
+  text-decoration: none; 
+}
+
+.item a:hover {
+  color: #6d403a;
+
+}
+
+
