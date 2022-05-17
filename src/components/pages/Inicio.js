@@ -36,7 +36,7 @@ function Inicio() {
       </h1>
       <p>Cuidar de você. Esse é o nosso plano!</p>
       <ThemeProvider theme={theme} >
-        <Button variant="contained"color="primary" onClick={goRegister}>Cadastre-se
+        <Button sx={{whiteSpace: "nowrap"}} variant="contained"color="primary" onClick={goRegister}>Cadastre-se
         </Button>
       </ThemeProvider>
       <Card variant="underline" item sm={12}>

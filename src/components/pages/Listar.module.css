@@ -31,12 +31,7 @@
   box-shadow: 3px 4px 8px #222;
 }
 
-.init input {
-  padding: 5px;
-  border: none;
-  border-bottom: 1px solid #222;
-  background-color: #efefef;
-}
+
 
 .init div {
   margin-bottom: 1.8em;
